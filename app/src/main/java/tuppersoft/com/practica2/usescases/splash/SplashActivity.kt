@@ -26,10 +26,10 @@ class SplashActivity : GlobalActivity(), OnPageChangeListener {
     override fun onPageSelected(position: Int) {
         if (position == NUM_PAGES - 1) {
             idGo.text = getString(R.string.go)
-            idSkip.visibility= View.GONE
+            idSkip.visibility = View.GONE
         } else {
             idGo.text = getString(R.string.next)
-            idSkip.visibility= View.VISIBLE
+            idSkip.visibility = View.VISIBLE
         }
     }
 
@@ -37,10 +37,15 @@ class SplashActivity : GlobalActivity(), OnPageChangeListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         initAdapter()
+        initIndicator()
         setText()
     }
 
-    fun initAdapter() {
+    private fun initIndicator() {
+        tab_layout.setupWithViewPager(idViewPager, true)
+    }
+
+    private fun initAdapter() {
         idViewPager.adapter = SplashPagerAdapter(supportFragmentManager, NUM_PAGES)
         idViewPager.addOnPageChangeListener(this)
     }

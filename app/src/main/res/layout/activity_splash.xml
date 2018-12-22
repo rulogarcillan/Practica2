@@ -11,6 +11,8 @@
                                          android:layout_width="match_parent"
                                          android:layout_height="match_parent"/>
 
+
+
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineStart"
             android:layout_width="wrap_content"
@@ -50,5 +52,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:onClick="onClickNext"/>
 
+    <com.google.android.material.tabs.TabLayout
+
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tabBackground="@drawable/tab_selector"
+            app:tabPaddingStart="7dp"
+            app:tabPaddingEnd="7dp"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
