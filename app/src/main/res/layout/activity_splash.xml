@@ -12,7 +12,6 @@
                                          android:layout_height="match_parent"/>
 
 
-
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guidelineStart"
             android:layout_width="wrap_content"
@@ -27,19 +26,30 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.90"/>
 
-    <View android:layout_width="match_parent"
-          android:layout_height="48dp"
-          app:layout_constraintBottom_toBottomOf="parent"
-          android:background="@color/semiTransparent"/>
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineBotton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="56dp"/>
+
+    <View
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
+            app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+            app:layout_constraintTop_toBottomOf="@id/guidelineBotton"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/semiTransparent"/>
 
     <Button android:id="@+id/idSkip"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="@id/guidelineStart"
             android:background="?android:attr/selectableItemBackground"
             tools:text="@string/skip"
             android:textColor="@android:color/white"
+            app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guidelineBotton"
             android:onClick="onClickSkip"/>
 
     <Button android:id="@+id/idGo"
@@ -48,18 +58,19 @@
             tools:text="@string/next"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
+            app:layout_constraintTop_toBottomOf="@id/guidelineBotton"
             android:background="?android:attr/selectableItemBackground"
             app:layout_constraintBottom_toBottomOf="parent"
             android:onClick="onClickNext"/>
 
     <com.google.android.material.tabs.TabLayout
-
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="@id/guidelineStart"
             app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guidelineBotton"
             app:tabBackground="@drawable/tab_selector"
             app:tabPaddingStart="7dp"
             app:tabPaddingEnd="7dp"

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:orientation="vertical"
+                                                   android:background="@color/primaryColor"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
+
+
+    <TextView
+            android:layout_marginTop="100dp"
+            android:id="@+id/idTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/tittle_post"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="32sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/idIcon"/>
+
+    <ImageView android:id="@+id/idIcon"
+               android:layout_width="wrap_content"
+               android:layout_height="0dp"
+               tools:srcCompat="@drawable/ic_blabla"
+               app:layout_constraintTop_toBottomOf="@+id/idTitle"
+               app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.496"/>
+
+    <TextView android:id="@+id/idBody"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:textColor="@android:color/white"
+              android:textAlignment="center"
+              android:textSize="24sp"
+              android:layout_marginStart="48dp"
+              android:layout_marginEnd="48dp"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintTop_toBottomOf="@+id/idIcon"
+              tools:text="@string/body_post"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
