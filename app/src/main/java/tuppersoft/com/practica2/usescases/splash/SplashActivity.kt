@@ -7,6 +7,7 @@ import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import kotlinx.android.synthetic.main.activity_splash.*
 import tuppersoft.com.data.Repository
 import tuppersoft.com.practica2.R
+import tuppersoft.com.practica2.usescases.global.EXTRA_TUTORIAL
 import tuppersoft.com.practica2.usescases.global.GlobalActivity
 import tuppersoft.com.practica2.usescases.main.MainActivity
 
@@ -16,6 +17,8 @@ class SplashActivity : GlobalActivity(), OnPageChangeListener {
     companion object {
         const val FIRST_TIME = "FIRST_TIME"
     }
+
+    var repeatTutorial = false
 
 
     lateinit var pages: ArrayList<SplashPage>
@@ -38,7 +41,11 @@ class SplashActivity : GlobalActivity(), OnPageChangeListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        isFirstTime()
+
+        repeatTutorial = getExtras()
+        if (!repeatTutorial) {
+            isFirstTime()
+        }
         setContentView(R.layout.activity_splash)
         createPages()
         initAdapter()
@@ -48,6 +55,14 @@ class SplashActivity : GlobalActivity(), OnPageChangeListener {
         }
     }
 
+    fun getExtras(): Boolean {
+        val b = intent.extras
+        if (b != null) {
+            return b.getBoolean(EXTRA_TUTORIAL, false)
+        }
+        return false
+    }
+
 
     fun onClickSkip(view: View) {
         idViewPager.currentItem = idViewPager.adapter?.count?.minus(1) ?: idViewPager.currentItem
@@ -55,7 +70,7 @@ class SplashActivity : GlobalActivity(), OnPageChangeListener {
 
     fun onClickNext(view: View) {
         if (idViewPager.currentItem == idViewPager.adapter?.count?.minus(1) ?: idViewPager.currentItem) {
-           launchActivityMain()
+            launchActivityMain()
         } else if (idViewPager.currentItem < pages.size - 1) {
             idViewPager.currentItem = idViewPager.currentItem + 1
         }
@@ -70,8 +85,10 @@ class SplashActivity : GlobalActivity(), OnPageChangeListener {
     }
 
     private fun launchActivityMain() {
-        val i = Intent(baseContext, MainActivity::class.java)
-        startActivity(i)
+        if (!repeatTutorial) {
+            val i = Intent(baseContext, MainActivity::class.java)
+            startActivity(i)
+        }
         finish()
     }
 
@@ -120,6 +137,14 @@ class SplashActivity : GlobalActivity(), OnPageChangeListener {
     private fun initAdapter() {
         idViewPager.adapter = SplashPagerAdapter(supportFragmentManager, pages)
         idViewPager.addOnPageChangeListener(this)
+    }
+
+    override fun onBackPressed() {
+        if (idViewPager.currentItem == 0) {
+            super.onBackPressed()
+        } else {
+            idViewPager.currentItem = idViewPager.currentItem - 1
+        }
     }
 
 }

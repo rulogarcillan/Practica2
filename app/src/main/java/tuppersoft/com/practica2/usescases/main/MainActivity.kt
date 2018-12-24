@@ -1,18 +1,31 @@
 package tuppersoft.com.practica2.usescases.main
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.appbar.*
 import tuppersoft.com.practica2.R
+import tuppersoft.com.practica2.usescases.global.EXTRA_TUTORIAL
 import tuppersoft.com.practica2.usescases.global.GlobalActivity
+import tuppersoft.com.practica2.usescases.splash.SplashActivity
 
-class MainActivity : GlobalActivity() {
+class MainActivity : GlobalActivity(), ActionsMenu {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        setActionBar()
+        setAdapter()
+
+        //nav_view.setNavigationItemSelectedListener(this)
+    }
+
+    private fun setActionBar() {
         setSupportActionBar(toolbar)
 
         val toggle = ActionBarDrawerToggle(
@@ -20,8 +33,12 @@ class MainActivity : GlobalActivity() {
         )
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
+    }
 
-        //nav_view.setNavigationItemSelectedListener(this)
+    private fun setAdapter() {
+        val viewAdapter = MainDrawerListAdapter(createMenu(), this)
+        idMenu.layoutManager = LinearLayoutManager(this)
+        idMenu.adapter = viewAdapter
     }
 
     override fun onBackPressed() {
@@ -31,5 +48,32 @@ class MainActivity : GlobalActivity() {
             super.onBackPressed()
         }
     }
+
+    private fun createMenu(): ArrayList<ItemModel> {
+        val menu = ArrayList<ItemModel>()
+        menu.add(ItemHeader())
+        menu.add(ItemSection(getString(R.string.comunity)))
+        menu.add(ItemMenu(getString(R.string.tittle_post), R.drawable.ic_post_menu))
+        menu.add(ItemMenu(getString(R.string.tittle_albums), R.drawable.ic_albums_menu))
+        menu.add(ItemMenu(getString(R.string.tittle_users), R.drawable.ic_users_menu))
+        menu.add(ItemSection(getString(R.string.miscellaneous)))
+        menu.add(ItemMenu(getString(R.string.tutorial), R.drawable.ic_tutorial))
+        menu.add(ItemMenu(getString(R.string.logout), R.drawable.ic_logout))
+        return menu
+    }
+
+    override fun onClickItemMenu(id: String) {
+        when (id) {
+            getString(R.string.tutorial) -> startTutorial()
+            getString(R.string.logout) -> finish()
+        }
+    }
+
+    private fun startTutorial() {
+        val i = Intent(baseContext, SplashActivity::class.java)
+        i.putExtra(EXTRA_TUTORIAL, true)
+        startActivity(i)
+    }
+
 
 }
