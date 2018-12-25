@@ -1,12 +1,56 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
+    <!-- Base theme. -->
+    <style name="AppBase" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/primaryColor</item>
+        <item name="header">@style/NavHeader.Background</item>
     </style>
+
+    <style name="AppTheme" parent="AppBase">
+        <item name="header">@style/NavHeader.Background</item>
+    </style>
+    <!-- End Base Theme -->
+
+    <!-- Base theme dark. -->
+    <style name="AppBaseDark" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/primaryColorDark</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColorDark</item>
+        <item name="colorAccent">@color/primaryColor</item>
+
+    </style>
+
+    <style name="AppThemeDark" parent="AppBaseDark">
+        <item name="header">@style/NavHeader.BackgroundDark</item>
+    </style>
+    <!-- End Base Theme dark-->
+
+
+    <!-- NavHEader -->
+    <declare-styleable name = "customHeader">
+        <attr name = "header" format = "reference" />
+    </declare-styleable>
+
+    <style name="NavHeader">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/nav_header_height</item>
+        <item name="android:paddingBottom">@dimen/activity_vertical_margin</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+        <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
+    </style>
+
+    <style name="NavHeader.Background" parent="NavHeader">
+        <item name="android:background">@drawable/side_nav_bar</item>
+    </style>
+
+    <style name="NavHeader.BackgroundDark" parent="NavHeader">
+        <item name="android:background">@drawable/side_nav_bar_dark</item>
+    </style>
+    <!-- End NavHEader -->
+
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 

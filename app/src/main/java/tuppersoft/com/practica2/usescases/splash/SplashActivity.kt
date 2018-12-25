@@ -1,8 +1,11 @@
 package tuppersoft.com.practica2.usescases.splash
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import kotlinx.android.synthetic.main.activity_splash.*
 import tuppersoft.com.data.Repository
@@ -13,6 +16,7 @@ import tuppersoft.com.practica2.usescases.main.MainActivity
 
 
 class SplashActivity : GlobalActivity(), OnPageChangeListener {
+
 
     companion object {
         const val FIRST_TIME = "FIRST_TIME"
@@ -125,7 +129,7 @@ class SplashActivity : GlobalActivity(), OnPageChangeListener {
             SplashPage(
                 getString(R.string.tittle_users),
                 getString(R.string.body_users),
-                R.drawable.ic_users
+                R.drawable.ic_people
             )
         )
     }

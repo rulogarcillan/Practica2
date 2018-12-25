@@ -4,6 +4,7 @@
           package="tuppersoft.com.practica2">
 
     <application
+            android:name=".App"
             android:allowBackup="false"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
@@ -19,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".usescases.main.MainActivity"
+                  android:hardwareAccelerated="true"
                   android:theme="@style/AppTheme"/>
     </application>
 

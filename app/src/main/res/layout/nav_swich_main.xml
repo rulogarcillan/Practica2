@@ -1,0 +1,42 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:appCompat="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ItemMenu"
+        android:background="?android:attr/selectableItemBackground"
+        android:layout_height="48dp"
+        android:layout_width="match_parent">
+
+
+    <ImageView android:id="@+id/idIcon"
+               tools:srcCompat="@drawable/ic_post_menu"
+               appCompat:layout_constraintTop_toTopOf="parent"
+               appCompat:layout_constraintBottom_toBottomOf="parent"
+               android:layout_width="24dp"
+               android:layout_height="24dp"
+               appCompat:layout_constraintStart_toStartOf="parent"
+               android:layout_marginStart="24dp"
+               android:tint="@color/accent"
+    />
+
+    <TextView android:id="@+id/idMenuItem"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="14sp"
+              appCompat:layout_constraintTop_toTopOf="parent"
+              appCompat:layout_constraintBottom_toBottomOf="parent"
+              appCompat:layout_constraintStart_toEndOf="@id/idIcon"
+              android:layout_marginStart="20dp"
+              tools:text="Albums"
+    />
+
+    <androidx.appcompat.widget.SwitchCompat android:id="@+id/idSwich"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            appCompat:layout_constraintTop_toTopOf="parent"
+                                            appCompat:layout_constraintBottom_toBottomOf="parent"
+                                            appCompat:layout_constraintEnd_toEndOf="parent"
+                                            android:layout_marginEnd="24dp"
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

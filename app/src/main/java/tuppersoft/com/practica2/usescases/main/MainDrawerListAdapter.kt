@@ -4,10 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import tuppersoft.com.practica2.R
-import tuppersoft.com.practica2.usescases.global.GlobalAdapter
-import tuppersoft.com.practica2.usescases.global.TYPE_HEADER
-import tuppersoft.com.practica2.usescases.global.TYPE_MENU
-import tuppersoft.com.practica2.usescases.global.TYPE_SECTION
+import tuppersoft.com.practica2.usescases.global.*
 
 class MainDrawerListAdapter(val menu: MutableList<ItemModel>, val listener: ActionsMenu) :
     GlobalAdapter<ItemModel>(menu) {
@@ -36,6 +33,13 @@ class MainDrawerListAdapter(val menu: MutableList<ItemModel>, val listener: Acti
                     false
                 )
             )
+            TYPE_SWICH -> ItemSwichHolder(
+                LayoutInflater.from(rootView.context).inflate(
+                    R.layout.nav_swich_main,
+                    rootView,
+                    false
+                )
+            )
             else -> {
                 ItemModelHolder(LayoutInflater.from(rootView.context).inflate(null, rootView, false))
             }
@@ -45,6 +49,10 @@ class MainDrawerListAdapter(val menu: MutableList<ItemModel>, val listener: Acti
         if (rootView is ItemMenuHolder) {
             val itemMenu = getItem(position)
             rootView.bind(itemMenu as ItemMenu, listener)
+        }
+        if (rootView is ItemSwichHolder) {
+            val itemMenu = getItem(position)
+            rootView.bind(itemMenu as ItemSwich, listener)
         }
         if (rootView is ItemSectionHolder) {
             val itemMenu = getItem(position)
