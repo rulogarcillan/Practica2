@@ -33,9 +33,9 @@ class MainDrawerListAdapter(val menu: MutableList<ItemModel>, val listener: Acti
                     false
                 )
             )
-            TYPE_SWICH -> ItemSwichHolder(
+            TYPE_SWICH -> ItemCheckHolder(
                 LayoutInflater.from(rootView.context).inflate(
-                    R.layout.nav_swich_main,
+                    R.layout.nav_check_main,
                     rootView,
                     false
                 )
@@ -50,9 +50,9 @@ class MainDrawerListAdapter(val menu: MutableList<ItemModel>, val listener: Acti
             val itemMenu = getItem(position)
             rootView.bind(itemMenu as ItemMenu, listener)
         }
-        if (rootView is ItemSwichHolder) {
+        if (rootView is ItemCheckHolder) {
             val itemMenu = getItem(position)
-            rootView.bind(itemMenu as ItemSwich, listener)
+            rootView.bind(itemMenu as ItemCheck, listener)
         }
         if (rootView is ItemSectionHolder) {
             val itemMenu = getItem(position)

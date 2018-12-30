@@ -16,7 +16,7 @@
                android:layout_height="24dp"
                appCompat:layout_constraintStart_toStartOf="parent"
                android:layout_marginStart="24dp"
-               android:tint="@color/accent"
+               style="?attr/tintIconMenu"
     />
 
     <TextView android:id="@+id/idMenuItem"
@@ -30,7 +30,7 @@
               tools:text="Albums"
     />
 
-    <androidx.appcompat.widget.SwitchCompat android:id="@+id/idSwich"
+    <androidx.appcompat.widget.AppCompatCheckBox android:id="@+id/idCheckBox"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             appCompat:layout_constraintTop_toTopOf="parent"

@@ -4,12 +4,13 @@
     <style name="AppBase" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorAccent">@color/primaryColor</item>
+        <item name="colorAccent">@color/accent</item>
         <item name="header">@style/NavHeader.Background</item>
     </style>
 
     <style name="AppTheme" parent="AppBase">
         <item name="header">@style/NavHeader.Background</item>
+        <item name="tintIconMenu">@style/iconMenu</item>
     </style>
     <!-- End Base Theme -->
 
@@ -17,21 +18,24 @@
     <style name="AppBaseDark" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/primaryColorDark</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorDark</item>
-        <item name="colorAccent">@color/primaryColor</item>
+        <item name="colorAccent">@color/accentDark</item>
 
     </style>
 
     <style name="AppThemeDark" parent="AppBaseDark">
         <item name="header">@style/NavHeader.BackgroundDark</item>
+        <item name="tintIconMenu">@style/iconMenuDark</item>
     </style>
     <!-- End Base Theme dark-->
 
 
-    <!-- NavHEader -->
+
     <declare-styleable name = "customHeader">
         <attr name = "header" format = "reference" />
+        <attr name = "tintIconMenu" format = "reference" />
     </declare-styleable>
 
+    <!-- NavHEader -->
     <style name="NavHeader">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/nav_header_height</item>
@@ -49,6 +53,13 @@
         <item name="android:background">@drawable/side_nav_bar_dark</item>
     </style>
     <!-- End NavHEader -->
+    <style name="iconMenu">
+        <item name="android:tint">@color/accent</item>
+    </style>
+    <style name="iconMenuDark">
+        <item name="android:tint">@color/accentDark</item>
+    </style>
+
 
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>

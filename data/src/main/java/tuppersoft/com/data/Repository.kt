@@ -2,6 +2,13 @@ package tuppersoft.com.data
 
 import android.content.Context
 import android.preference.PreferenceManager
+import retrofit2.Call
+import retrofit2.Response
+import tuppersoft.com.data.connection.Client
+import tuppersoft.com.data.connection.ResponseCallback
+import tuppersoft.com.data.connection.Services
+import tuppersoft.com.domain.dto.Post
+import javax.security.auth.callback.Callback
 
 
 class Repository {
@@ -34,5 +41,20 @@ class Repository {
                 else -> defaultValue as Any
             }
         }
+
+
+        fun <T> getPost(callback: ResponseCallback<T>) {
+            Client().getRetrofitCLient().create(Services::class.java).getPost().enqueue(object : Callback,
+                retrofit2.Callback<MutableList<Post>> {
+                override fun onFailure(call: Call<MutableList<Post>>, t: Throwable) {
+                    callback.onFailure(t)
+                }
+
+                override fun onResponse(call: Call<MutableList<Post>>, response: Response<MutableList<Post>>) {
+                    callback.onResponse(response.body() as T)
+                }
+            })
+        }
+
     }
 }

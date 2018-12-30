@@ -10,7 +10,7 @@ abstract class GlobalAdapter<T>(private var items: MutableList<T>?) : RecyclerVi
         if (items?.get(position) != null)
             return items?.get(position) as T
         else
-            throw NullPointerException()
+            throw NullPointerException() as Throwable
     }
 
     fun addItems(newItems: MutableList<T>, position: Int = items?.lastIndex ?: 0) {

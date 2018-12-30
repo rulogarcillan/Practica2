@@ -3,14 +3,12 @@ package tuppersoft.com.practica2.usescases.main
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.appbar.*
 import tuppersoft.com.data.Repository
 import tuppersoft.com.practica2.R
-
 import tuppersoft.com.practica2.usescases.global.EXTRA_TUTORIAL
 import tuppersoft.com.practica2.usescases.global.GlobalActivity
 import tuppersoft.com.practica2.usescases.global.THEME
@@ -26,8 +24,6 @@ class MainActivity : GlobalActivity(), ActionsMenu {
         setActionBar()
         setAdapter()
         MainPlaceHolderFragment.replaceFragment(this, getString(R.string.tittle_post))
-//        setTheme(R.style.AppThemeDark)
-
     }
 
     private fun setActionBar() {
@@ -39,6 +35,7 @@ class MainActivity : GlobalActivity(), ActionsMenu {
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
     }
+
 
     private fun setAdapter() {
         val viewAdapter = MainDrawerListAdapter(createMenu(), this)
@@ -63,7 +60,7 @@ class MainActivity : GlobalActivity(), ActionsMenu {
         menu.add(ItemMenu(getString(R.string.tittle_users), R.drawable.ic_users_menu))
         menu.add(ItemSection(getString(R.string.miscellaneous)))
         menu.add(
-            ItemSwich(
+            ItemCheck(
                 getString(R.string.dark_theme),
                 R.drawable.ic_theme,
                 Repository.loadPreference(this, THEME, R.style.AppTheme) as Int
@@ -92,10 +89,6 @@ class MainActivity : GlobalActivity(), ActionsMenu {
         } else {
             Repository.savePreference(this, THEME, R.style.AppTheme)
         }
-    /*    TaskStackBuilder.create(this)
-            .addNextIntent(Intent(this, MainActivity::class.java))
-            .addNextIntent(this.intent)
-            .startActivities()*/
         this.recreate()
     }
 
@@ -106,9 +99,6 @@ class MainActivity : GlobalActivity(), ActionsMenu {
     }
 
     fun onSectionAttached(section: String) {
-
-      //  toolbar.title = section
+        supportActionBar?.title = section
     }
-
-
 }
