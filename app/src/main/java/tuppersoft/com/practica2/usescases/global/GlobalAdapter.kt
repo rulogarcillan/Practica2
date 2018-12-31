@@ -21,4 +21,9 @@ abstract class GlobalAdapter<T>(private var items: MutableList<T>?) : RecyclerVi
         notifyDataSetChanged()
     }
 
+    fun resetItems(newItems: MutableList<T>) {
+        items = newItems
+        notifyDataSetChanged()
+    }
+
 }

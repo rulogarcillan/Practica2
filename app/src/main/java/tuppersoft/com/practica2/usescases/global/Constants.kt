@@ -7,3 +7,5 @@ const val TYPE_SWICH = 3
 const val EXTRA_TUTORIAL = "extra_tutorial"
 const val TAG = "practica2"
 const val THEME = "theme"
+
+const val POST = "post"

@@ -8,6 +8,7 @@ import tuppersoft.com.data.connection.Client
 import tuppersoft.com.data.connection.ResponseCallback
 import tuppersoft.com.data.connection.Services
 import tuppersoft.com.domain.dto.Post
+import tuppersoft.com.domain.dto.User
 import javax.security.auth.callback.Callback
 
 
@@ -54,6 +55,32 @@ class Repository {
                     callback.onResponse(response.body() as T)
                 }
             })
+        }
+
+        fun <T> getUser(userId: Long, callback: ResponseCallback<T>) {
+            Client().getRetrofitCLient().create(Services::class.java).getUser(userId).enqueue((object : Callback,
+                retrofit2.Callback<MutableList<User>> {
+                override fun onFailure(call: Call<MutableList<User>>, t: Throwable) {
+                    callback.onFailure(t)
+                }
+
+                override fun onResponse(call: Call<MutableList<User>>, response: Response<MutableList<User>>) {
+                    callback.onResponse(response.body()?.first() as T)
+                }
+            }))
+        }
+
+        fun <T> getUsers(callback: ResponseCallback<T>) {
+            Client().getRetrofitCLient().create(Services::class.java).getUsers().enqueue((object : Callback,
+                retrofit2.Callback<MutableList<User>> {
+                override fun onFailure(call: Call<MutableList<User>>, t: Throwable) {
+                    callback.onFailure(t)
+                }
+
+                override fun onResponse(call: Call<MutableList<User>>, response: Response<MutableList<User>>) {
+                    callback.onResponse(response.body() as T)
+                }
+            }))
         }
 
     }

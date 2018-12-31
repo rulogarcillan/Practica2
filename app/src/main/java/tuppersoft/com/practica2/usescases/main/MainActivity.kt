@@ -54,7 +54,7 @@ class MainActivity : GlobalActivity(), ActionsMenu {
     private fun createMenu(): ArrayList<ItemModel> {
         val menu = ArrayList<ItemModel>()
         menu.add(ItemHeader())
-        menu.add(ItemSection(getString(R.string.comunity)))
+        menu.add(ItemSection(getString(R.string.community)))
         menu.add(ItemMenu(getString(R.string.tittle_post), R.drawable.ic_post_menu))
         menu.add(ItemMenu(getString(R.string.tittle_albums), R.drawable.ic_albums_menu))
         menu.add(ItemMenu(getString(R.string.tittle_users), R.drawable.ic_users_menu))
@@ -82,7 +82,7 @@ class MainActivity : GlobalActivity(), ActionsMenu {
         drawer_layout.closeDrawer(GravityCompat.START)
     }
 
-    override fun onSwichChange(isChecked: Boolean) {
+    override fun onSwitchChange(isChecked: Boolean) {
         if (isChecked) {
             Repository.savePreference(this, THEME, R.style.AppThemeDark)
 

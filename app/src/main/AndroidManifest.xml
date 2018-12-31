@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools"
           package="tuppersoft.com.practica2">
+
     <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
             android:name=".App"
             android:allowBackup="false"
@@ -19,9 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".usescases.main.MainActivity"
-                  android:hardwareAccelerated="true"
-                  android:theme="@style/AppTheme"/>
+        <activity
+                android:name=".usescases.main.MainActivity"
+                android:hardwareAccelerated="true"
+                android:theme="@style/AppTheme"/>
+        <activity android:name=".usescases.comments.CommentsActivity">
+        </activity>
     </application>
 
 </manifest>

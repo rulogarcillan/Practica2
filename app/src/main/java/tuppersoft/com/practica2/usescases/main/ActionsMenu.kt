@@ -3,6 +3,6 @@ package tuppersoft.com.practica2.usescases.main
 interface ActionsMenu {
 
     fun onClickItemMenu(id: String)
-    fun onSwichChange(isChecked: Boolean)
+    fun onSwitchChange(isChecked: Boolean)
 
 }

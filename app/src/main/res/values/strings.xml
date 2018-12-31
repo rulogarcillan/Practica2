@@ -14,11 +14,15 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="comunity">Comunity</string>
+    <string name="community">Community</string>
     <string name="miscellaneous">Miscellaneous</string>
     <string name="tutorial">Tutorial</string>
     <string name="logout">Log out</string>
     <string name="dark_theme">Dark Theme</string>
     <string name="search">Search</string>
+    <string name="id_post">#%1$s</string>
+    <string name="written_by">Written by %1$s with id %2$s</string>
+    <string name="hintSearchPeople">Search by people id</string>
+    <string name="comments">Comments</string>
 
 </resources>

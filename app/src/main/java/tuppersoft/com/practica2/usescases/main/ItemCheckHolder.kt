@@ -15,6 +15,6 @@ class ItemCheckHolder(private var rootView: View) : ItemModelHolder(rootView) {
         rootView.ItemMenu.setOnClickListener {
             rootView.idCheckBox.isChecked = !rootView.idCheckBox.isChecked
         }
-        rootView.idCheckBox.setOnCheckedChangeListener { buttonView, isChecked -> listener.onSwichChange(isChecked) }
+        rootView.idCheckBox.setOnCheckedChangeListener { buttonView, isChecked -> listener.onSwitchChange(isChecked) }
     }
 }
