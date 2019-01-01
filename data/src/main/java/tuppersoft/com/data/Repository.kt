@@ -7,8 +7,7 @@ import retrofit2.Response
 import tuppersoft.com.data.connection.Client
 import tuppersoft.com.data.connection.ResponseCallback
 import tuppersoft.com.data.connection.Services
-import tuppersoft.com.domain.dto.Post
-import tuppersoft.com.domain.dto.User
+import tuppersoft.com.domain.dto.*
 import javax.security.auth.callback.Callback
 
 
@@ -78,6 +77,46 @@ class Repository {
                 }
 
                 override fun onResponse(call: Call<MutableList<User>>, response: Response<MutableList<User>>) {
+                    callback.onResponse(response.body() as T)
+                }
+            }))
+        }
+
+
+        fun <T> getComments(postId: Long, callback: ResponseCallback<T>) {
+            Client().getRetrofitCLient().create(Services::class.java).getComments(postId).enqueue((object : Callback,
+                retrofit2.Callback<MutableList<Comment>> {
+                override fun onFailure(call: Call<MutableList<Comment>>, t: Throwable) {
+                    callback.onFailure(t)
+                }
+
+                override fun onResponse(call: Call<MutableList<Comment>>, response: Response<MutableList<Comment>>) {
+                    callback.onResponse(response.body() as T)
+                }
+            }))
+        }
+
+        fun <T> getAlbums(callback: ResponseCallback<T>) {
+            Client().getRetrofitCLient().create(Services::class.java).getAlbums().enqueue((object : Callback,
+                retrofit2.Callback<MutableList<Album>> {
+                override fun onFailure(call: Call<MutableList<Album>>, t: Throwable) {
+                    callback.onFailure(t)
+                }
+
+                override fun onResponse(call: Call<MutableList<Album>>, response: Response<MutableList<Album>>) {
+                    callback.onResponse(response.body() as T)
+                }
+            }))
+        }
+
+        fun <T> getPhotos(albumId: Long, callback: ResponseCallback<T>) {
+            Client().getRetrofitCLient().create(Services::class.java).getPhotos(albumId).enqueue((object : Callback,
+                retrofit2.Callback<MutableList<Photo>> {
+                override fun onFailure(call: Call<MutableList<Photo>>, t: Throwable) {
+                    callback.onFailure(t)
+                }
+
+                override fun onResponse(call: Call<MutableList<Photo>>, response: Response<MutableList<Photo>>) {
                     callback.onResponse(response.body() as T)
                 }
             }))
