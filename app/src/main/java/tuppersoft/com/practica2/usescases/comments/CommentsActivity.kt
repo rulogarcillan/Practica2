@@ -1,10 +1,12 @@
 package tuppersoft.com.practica2.usescases.comments
 
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_comments.*
 import kotlinx.android.synthetic.main.appbar.*
+import kotlinx.android.synthetic.main.fragment_list.view.*
 import tuppersoft.com.data.Repository
 import tuppersoft.com.data.connection.ResponseCallback
 import tuppersoft.com.domain.dto.Comment
@@ -41,13 +43,16 @@ class CommentsActivity : GlobalActivity() {
 
 
     private fun getComments() {
+        idProgressBar.visibility= View.VISIBLE
         Repository.getComments((binding.post as Post).id, object : ResponseCallback<MutableList<Comment>> {
             override fun onResponse(response: MutableList<Comment>) {
+                idProgressBar.visibility= View.GONE
                 (idRecyclerViewComments.adapter as CommentsAdapter).addItems(response)
+
             }
 
             override fun onFailure(t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                idProgressBar.visibility= View.GONE
             }
 
         })

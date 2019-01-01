@@ -7,7 +7,8 @@ import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_post.view.*
+import kotlinx.android.synthetic.main.fragment_list.*
+import kotlinx.android.synthetic.main.fragment_list.view.*
 import tuppersoft.com.data.Repository
 import tuppersoft.com.data.connection.ResponseCallback
 import tuppersoft.com.domain.dto.Post
@@ -25,25 +26,28 @@ class PostFragment : MainPlaceHolderFragment(), SearchView.OnQueryTextListener, 
     lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.fragment_post, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_list, container, false)
         setHasOptionsMenu(true)
         recyclerView = rootView.idListRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = PostAdapter(null, this)
-        getPost()
+        getPost(rootView)
         return rootView
     }
 
-    private fun getPost() {
+    private fun getPost(view : View) {
+
+        view.idProgressBar.visibility=View.VISIBLE
 
         Repository.getPost(object : ResponseCallback<MutableList<Post>> {
             override fun onResponse(response: MutableList<Post>) {
                 initList = response
                 (recyclerView.idListRecyclerView.adapter as PostAdapter).addItems(initList)
+                idProgressBar.visibility=View.GONE
             }
 
             override fun onFailure(t: Throwable) {
-
+                idProgressBar.visibility=View.GONE
             }
         })
     }
