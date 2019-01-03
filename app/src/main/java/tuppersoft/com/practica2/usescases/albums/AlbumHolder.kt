@@ -9,5 +9,6 @@ class AlbumHolder(private val rootView: AlbumItemBinding) : RecyclerView.ViewHol
 
     fun bind(item: Album, listener: GlobalListener) {
         rootView.album = item
+        rootView.action = listener
     }
 }

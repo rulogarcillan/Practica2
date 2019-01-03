@@ -9,3 +9,7 @@ const val TAG = "practica2"
 const val THEME = "theme"
 
 const val POST = "post"
+const val ALBUM = "album"
+const val USER = "user"
+
+const val MY_PERMISSIONS_REQUEST_CALL_PHONE = 200

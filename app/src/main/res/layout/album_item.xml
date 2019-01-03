@@ -5,11 +5,15 @@
 
     <data>
         <variable name="album" type="tuppersoft.com.domain.dto.Album"/>
+
+        <variable name="action"
+                  type="tuppersoft.com.practica2.usescases.global.GlobalListener"/>
     </data>
 
     <androidx.cardview.widget.CardView
             android:id="@+id/idItem"
             android:background="?android:attr/selectableItemBackground"
+            android:onClick="@{() -> action.onClick(album) }"
             android:orientation="vertical"
             android:layout_marginBottom="1dp"
             android:layout_width="match_parent"
@@ -19,16 +23,23 @@
                                                            android:layout_margin="@dimen/default_margin"
                                                            android:layout_height="wrap_content">
 
+
+            <ImageView android:id="@+id/idAlbum"
+                       android:layout_width="48dp"
+                       android:layout_height="48dp"
+                       app:srcCompat="@drawable/ic_compact_disc"/>
+
             <TextView android:id="@+id/idTitle"
+                      android:layout_marginStart="@dimen/default_margin"
+                      app:layout_constraintStart_toEndOf="@id/idAlbum"
                       app:layout_constraintTop_toTopOf="parent"
                       app:layout_constraintBottom_toBottomOf="parent"
-                      app:layout_constraintStart_toStartOf="parent"
                       app:layout_constraintEnd_toEndOf="parent"
                       android:layout_width="0dp"
                       android:layout_height="wrap_content"
                       android:maxLines="1"
                       android:ellipsize="end"
-                      android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                       android:text="@{album.title}"
                       tools:text="Lorem ipsum"/>
 

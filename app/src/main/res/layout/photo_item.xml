@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tuppersoft.com.practica2.customviews.SquareLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_height="match_parent"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_margin="2dp">
+    <ImageView
+            android:id="@+id/idPhoto"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            tools:src="@drawable/ic_compact_disc"/>
+
+
+</tuppersoft.com.practica2.customviews.SquareLayout>

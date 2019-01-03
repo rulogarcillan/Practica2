@@ -1,5 +1,6 @@
 package tuppersoft.com.practica2.usescases.albums
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +12,10 @@ import tuppersoft.com.data.Repository
 import tuppersoft.com.data.connection.ResponseCallback
 import tuppersoft.com.domain.dto.Album
 import tuppersoft.com.practica2.R
+import tuppersoft.com.practica2.usescases.global.ALBUM
 import tuppersoft.com.practica2.usescases.global.GlobalListener
 import tuppersoft.com.practica2.usescases.main.MainPlaceHolderFragment
-import tuppersoft.com.practica2.usescases.post.PostAdapter
+import tuppersoft.com.practica2.usescases.photos.PhotosActivity
 
 
 class AlbumFragment : MainPlaceHolderFragment(), GlobalListener {
@@ -21,7 +23,7 @@ class AlbumFragment : MainPlaceHolderFragment(), GlobalListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_list, container, false)
-       // setHasOptionsMenu(true)
+        // setHasOptionsMenu(true)
         rootView.idListRecyclerView.layoutManager = LinearLayoutManager(activity)
         rootView.idListRecyclerView.adapter = AlbumAdapter(null, this)
         getAlbum(rootView)
@@ -45,7 +47,13 @@ class AlbumFragment : MainPlaceHolderFragment(), GlobalListener {
     }
 
     override fun <T> onClick(item: T) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        startComments(item as Album)
+    }
+
+    private fun startComments(item: Album) {
+        val intent = Intent(activity, PhotosActivity::class.java)
+        intent.putExtra(ALBUM, item)
+        startActivity(intent)
     }
 }
 

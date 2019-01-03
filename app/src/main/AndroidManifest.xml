@@ -25,8 +25,9 @@
                 android:name=".usescases.main.MainActivity"
                 android:hardwareAccelerated="true"
                 android:theme="@style/AppTheme"/>
-        <activity android:name=".usescases.comments.CommentsActivity">
-        </activity>
+        <activity android:name=".usescases.comments.CommentsActivity"/>
+        <activity android:name=".usescases.photos.PhotosActivity"/>
+        <activity android:name=".usescases.users.UserDetailsActivity"/>
     </application>
 
 </manifest>

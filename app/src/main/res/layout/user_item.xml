@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="user" type="tuppersoft.com.domain.dto.User"/>
+
+        <variable name="action"
+                  type="tuppersoft.com.practica2.usescases.global.GlobalListener"/>
+
+        <variable name="myActions" type="tuppersoft.com.practica2.usescases.users.UserHolder.MyActions"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/idItem"
+            android:background="?android:attr/selectableItemBackground"
+            android:onClick="@{() -> action.onClick(user) }"
+            android:orientation="vertical"
+            android:layout_marginBottom="1dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+                                                           android:layout_margin="@dimen/default_margin"
+                                                           android:layout_height="wrap_content">
+
+
+            <ImageView android:id="@+id/idAvatar"
+                       android:layout_width="48dp"
+                       android:layout_height="48dp"
+                       app:srcCompat="@drawable/ic_users"/>
+
+            <TextView android:id="@+id/idTitle"
+                      android:layout_marginStart="@dimen/default_margin"
+                      app:layout_constraintStart_toEndOf="@id/idAvatar"
+                      app:layout_constraintTop_toTopOf="parent"
+                      app:layout_constraintBottom_toBottomOf="@id/idAvatar"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:ellipsize="end"
+                      android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                      android:text="@{user.name}"
+                      tools:text="Nicola Tesla"/>
+
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          app:layout_constraintTop_toBottomOf="@+id/idAvatar">
+
+                <View android:layout_width="0dp"
+                      android:layout_height="0dp"
+                      android:layout_weight="1"/>
+
+                <ImageView android:layout_marginTop="@dimen/default_margin"
+                           android:layout_marginEnd="@dimen/default_margin"
+                           style="?attr/tintIconMenu"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:onClick="@{(view)->myActions.call(view, user.phone )}"
+                           android:src="@drawable/ic_phone"
+                           android:id="@+id/idPhone"/>
+
+                <ImageView android:layout_marginTop="@dimen/default_margin"
+                           android:layout_marginEnd="@dimen/default_margin"
+                           style="?attr/tintIconMenu"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:onClick="@{(view)->myActions.sendEmail(view, user.email )}"
+                           android:src="@drawable/ic_mail"
+                           android:id="@+id/idMail"/>
+
+                <ImageView android:layout_marginTop="@dimen/default_margin"
+                           android:layout_marginEnd="@dimen/default_margin"
+                           style="?attr/tintIconMenu"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:onClick="@{(view)->myActions.openMap(view, user.address.geo.lat, user.address.geo.lng )}"
+                           android:src="@drawable/ic_map"
+                           android:id="@+id/idMap"/>
+
+                <ImageView android:layout_marginTop="@dimen/default_margin"
+                           android:layout_marginEnd="@dimen/default_margin"
+                           style="?attr/tintIconMenu"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:onClick="@{(view)->myActions.openUrl(view, user.website )}"
+                           android:src="@drawable/ic_web"
+                           android:id="@+id/idWeb"/>
+
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

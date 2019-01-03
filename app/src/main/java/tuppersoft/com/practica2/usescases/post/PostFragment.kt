@@ -35,19 +35,18 @@ class PostFragment : MainPlaceHolderFragment(), SearchView.OnQueryTextListener, 
         return rootView
     }
 
-    private fun getPost(view : View) {
-
-        view.idProgressBar.visibility=View.VISIBLE
+    private fun getPost(view: View) {
+        view.idProgressBar.visibility = View.VISIBLE
 
         Repository.getPost(object : ResponseCallback<MutableList<Post>> {
             override fun onResponse(response: MutableList<Post>) {
                 initList = response
                 (recyclerView.idListRecyclerView.adapter as PostAdapter).addItems(initList)
-                idProgressBar.visibility=View.GONE
+                idProgressBar.visibility = View.GONE
             }
 
             override fun onFailure(t: Throwable) {
-                idProgressBar.visibility=View.GONE
+                idProgressBar.visibility = View.GONE
             }
         })
     }

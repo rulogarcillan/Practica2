@@ -1,6 +1,6 @@
 package tuppersoft.com.domain.dto
 
-import android.location.Address
+
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
