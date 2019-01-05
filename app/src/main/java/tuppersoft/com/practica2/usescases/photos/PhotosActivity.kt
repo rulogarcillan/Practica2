@@ -10,6 +10,7 @@ import tuppersoft.com.data.connection.ResponseCallback
 import tuppersoft.com.domain.dto.Album
 import tuppersoft.com.domain.dto.Photo
 import tuppersoft.com.practica2.R
+import tuppersoft.com.practica2.extensions.changeVisibility
 import tuppersoft.com.practica2.usescases.global.ALBUM
 import tuppersoft.com.practica2.usescases.global.GlobalActivity
 
@@ -40,15 +41,15 @@ class PhotosActivity : GlobalActivity() {
 
 
     private fun getPhotos() {
-        idProgressBar.visibility = View.VISIBLE
+        idProgressBar.changeVisibility(View.VISIBLE)
         Repository.getPhotos(album.id, object : ResponseCallback<MutableList<Photo>> {
             override fun onResponse(response: MutableList<Photo>) {
-                idProgressBar.visibility = View.GONE
+                idProgressBar.changeVisibility(View.GONE)
                 (idListRecyclerView.adapter as PhotosAdapter).addItems(response)
             }
 
             override fun onFailure(t: Throwable) {
-                idProgressBar.visibility = View.GONE
+                idProgressBar.changeVisibility(View.GONE)
             }
 
         })

@@ -7,12 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.fragment_list.view.*
 import tuppersoft.com.data.Repository
 import tuppersoft.com.data.connection.ResponseCallback
 import tuppersoft.com.domain.dto.User
 import tuppersoft.com.practica2.R
+import tuppersoft.com.practica2.extensions.changeVisibility
 import tuppersoft.com.practica2.usescases.global.GlobalListener
 import tuppersoft.com.practica2.usescases.global.USER
 import tuppersoft.com.practica2.usescases.main.MainPlaceHolderFragment
@@ -29,16 +29,17 @@ class UsersFragment : MainPlaceHolderFragment(), GlobalListener {
     }
 
     private fun getUser(view: View) {
-        view.idProgressBar.visibility = View.VISIBLE
+        view.idProgressBar.changeVisibility(View.VISIBLE)
 
         Repository.getUsers(object : ResponseCallback<MutableList<User>> {
             override fun onResponse(response: MutableList<User>) {
                 (view.idListRecyclerView.adapter as UserAdapter).addItems(response)
-                idProgressBar.visibility = View.GONE
+
+                view.idProgressBar.changeVisibility(View.GONE)
             }
 
             override fun onFailure(t: Throwable) {
-                idProgressBar.visibility = View.GONE
+                view.idProgressBar.changeVisibility(View.GONE)
             }
         })
     }

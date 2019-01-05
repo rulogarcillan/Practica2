@@ -7,12 +7,12 @@ import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_list.*
-import kotlinx.android.synthetic.main.fragment_list.view.*
+import kotlinx.android.synthetic.main.post_list.view.*
 import tuppersoft.com.data.Repository
 import tuppersoft.com.data.connection.ResponseCallback
 import tuppersoft.com.domain.dto.Post
 import tuppersoft.com.practica2.R
+import tuppersoft.com.practica2.extensions.changeVisibility
 import tuppersoft.com.practica2.usescases.comments.CommentsActivity
 import tuppersoft.com.practica2.usescases.global.GlobalListener
 import tuppersoft.com.practica2.usescases.global.POST
@@ -26,27 +26,33 @@ class PostFragment : MainPlaceHolderFragment(), SearchView.OnQueryTextListener, 
     lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.fragment_list, container, false)
+        val rootView = inflater.inflate(R.layout.post_list, container, false)
         setHasOptionsMenu(true)
-        recyclerView = rootView.idListRecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = PostAdapter(null, this)
+        initRecyclerView(rootView)
         getPost(rootView)
+        toScroll(rootView)
         return rootView
     }
 
+    private fun initRecyclerView(rootView: View) {
+        recyclerView = rootView.idListRecyclerView
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.adapter = PostAdapter(null, this)
+    }
+
     private fun getPost(view: View) {
-        view.idProgressBar.visibility = View.VISIBLE
+
+        view.idProgressBar.changeVisibility(View.VISIBLE)
 
         Repository.getPost(object : ResponseCallback<MutableList<Post>> {
             override fun onResponse(response: MutableList<Post>) {
                 initList = response
                 (recyclerView.idListRecyclerView.adapter as PostAdapter).addItems(initList)
-                idProgressBar.visibility = View.GONE
+                view.idProgressBar.changeVisibility(View.GONE)
             }
 
             override fun onFailure(t: Throwable) {
-                idProgressBar.visibility = View.GONE
+                view.idProgressBar.changeVisibility(View.GONE)
             }
         })
     }
@@ -82,6 +88,21 @@ class PostFragment : MainPlaceHolderFragment(), SearchView.OnQueryTextListener, 
         if (item is Post) {
             startComments(item as Post)
         }
+    }
+
+    private fun toScroll(view: View) {
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0) {
+                    view.idFbAdd.hide()
+                } else {
+                    view.idFbAdd.show()
+                }
+            }
+
+        })
     }
 
     private fun startComments(item: Post) {

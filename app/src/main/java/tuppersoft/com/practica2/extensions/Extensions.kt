@@ -1,6 +1,7 @@
 package tuppersoft.com.practica2.extensions
 
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import tuppersoft.com.practica2.BuildConfig
 import tuppersoft.com.practica2.usescases.global.TAG
@@ -19,5 +20,8 @@ fun ImageView.loadFromUrl(url: String?, width: Int? = null, height: Int? = null)
     } else {
         GlideApp.with(context).load(url).into(this)
     }
+}
 
+fun View.changeVisibility(type: Int) {
+    this.post { this.visibility = type }
 }

@@ -12,6 +12,7 @@
         <item name="header">@style/NavHeader.Background</item>
         <item name="tintIconMenu">@style/iconMenu</item>
         <item name="commentView">@style/commentView</item>
+        <item name="editTextAcent">@style/editTextAcent</item>
     </style>
     <!-- End Base Theme -->
 
@@ -20,6 +21,7 @@
         <item name="colorPrimary">@color/primaryColorDark</item>
         <item name="colorPrimaryDark">@color/primaryDarkColorDark</item>
         <item name="colorAccent">@color/accentDark</item>
+        <item name="editTextAcent">@style/editTextAcentDark</item>
 
     </style>
 
@@ -35,6 +37,7 @@
         <attr name="header" format="reference"/>
         <attr name="tintIconMenu" format="reference"/>
         <attr name="commentView" format="reference"/>
+        <attr name="editTextAcent" format="reference"/>
     </declare-styleable>
 
     <!-- NavHEader -->
@@ -68,6 +71,14 @@
     <style name="commentViewDark">
         <item name="android:background">@color/accentDark</item>
     </style>
+
+    <style name="editTextAcent">
+        <item name="android:textColor">@color/accent</item>
+    </style>
+    <style name="editTextAcentDark">
+        <item name="android:textColor">@color/accentDark</item>
+    </style>
+
 
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>

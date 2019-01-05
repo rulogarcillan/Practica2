@@ -1,15 +1,348 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <include layout="@layout/appbar"/>
+    <data>
+        <variable name="user" type="tuppersoft.com.domain.dto.User"/>
+    </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
-                                                       android:layout_height="match_parent">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/ctlLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:contentScrim="?attr/colorPrimary">
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="?attr/colorPrimary"
+                        app:popupTheme="@style/AppTheme.PopupOverlay"
+                        app:layout_collapseMode="pin"
+
+                        app:layout_scrollFlags="scroll|enterAlways">
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView android:layout_width="match_parent"
+                                               android:layout_height="match_parent"
+                                               app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:layout_margin="@dimen/default_margin"
+                          android:orientation="vertical">
+
+                <TextView android:id="@+id/idProfileDetails"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          style="?attr/editTextAcent"
+                          android:textStyle="bold"
+                          android:layout_marginBottom="@dimen/default_margin"
+                          android:textAllCaps="true"
+                          android:text="@string/profile_details"/>
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/default_margin"
+                              android:layout_marginBottom="@dimen/default_margin"
+                              android:orientation="horizontal"
+                              app:layout_constraintTop_toBottomOf="@+id/idProfileDetails">
+
+                    <ImageView
+                            app:srcCompat="@drawable/ic_users_menu"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="24dp"
+                            style="?attr/tintIconMenu"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            tools:itemTextAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_marginStart="20dp"
+                            android:text="@{user.username}"
+                            tools:text="username"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/default_margin"
+                              android:layout_marginBottom="@dimen/default_margin"
+                              android:orientation="horizontal"
+                              app:layout_constraintTop_toBottomOf="@+id/idProfileDetails">
+
+                    <ImageView
+                            app:srcCompat="@drawable/ic_mail"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="24dp"
+                            style="?attr/tintIconMenu"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            tools:itemTextAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_marginStart="20dp"
+                            android:text="@{user.email}"
+                            tools:text="email"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/default_margin"
+                              android:layout_marginBottom="@dimen/default_margin"
+                              android:orientation="horizontal"
+                              app:layout_constraintTop_toBottomOf="@+id/idProfileDetails">
+
+                    <ImageView
+                            app:srcCompat="@drawable/ic_phone"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="24dp"
+                            style="?attr/tintIconMenu"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            tools:itemTextAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_marginStart="20dp"
+                            android:text="@{user.phone}"
+                            tools:text="Phone"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/default_margin"
+                              android:layout_marginBottom="@dimen/default_margin"
+                              android:orientation="horizontal"
+                              app:layout_constraintTop_toBottomOf="@+id/idProfileDetails">
+
+                    <ImageView
+                            app:srcCompat="@drawable/ic_web"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="24dp"
+                            style="?attr/tintIconMenu"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            tools:itemTextAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_marginStart="20dp"
+                            android:text="@{user.website}"
+                            tools:text="Website"/>
+                </LinearLayout>
+
+                <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          style="?attr/editTextAcent"
+                          android:textStyle="bold"
+                          android:layout_marginTop="@dimen/default_margin"
+                          android:layout_marginBottom="@dimen/default_margin"
+                          android:textAllCaps="true"
+                          android:text="@string/address"/>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/default_margin"
+                              android:layout_marginBottom="@dimen/default_margin"
+                              android:orientation="horizontal"
+                              app:layout_constraintTop_toBottomOf="@+id/idProfileDetails">
 
-</LinearLayout>
+                    <ImageView
+                            app:srcCompat="@drawable/ic_street"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="24dp"
+                            style="?attr/tintIconMenu"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            tools:itemTextAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_marginStart="20dp"
+                            android:text="@{user.address.street}"
+                            tools:text="Street"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/default_margin"
+                              android:layout_marginBottom="@dimen/default_margin"
+                              android:orientation="horizontal"
+                              app:layout_constraintTop_toBottomOf="@+id/idProfileDetails">
+
+                    <ImageView
+                            app:srcCompat="@drawable/ic_suite"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="24dp"
+                            style="?attr/tintIconMenu"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            tools:itemTextAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_marginStart="20dp"
+                            android:text="@{user.address.suite}"
+                            tools:text="suite"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/default_margin"
+                              android:layout_marginBottom="@dimen/default_margin"
+                              android:orientation="horizontal"
+                              app:layout_constraintTop_toBottomOf="@+id/idProfileDetails">
+
+                    <ImageView
+                            app:srcCompat="@drawable/ic_city"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="24dp"
+                            style="?attr/tintIconMenu"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            tools:itemTextAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_marginStart="20dp"
+                            android:text="@{user.address.city}"
+                            tools:text="City"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/default_margin"
+                              android:layout_marginBottom="@dimen/default_margin"
+                              android:orientation="horizontal"
+                              app:layout_constraintTop_toBottomOf="@+id/idProfileDetails">
+
+                    <ImageView
+                            app:srcCompat="@drawable/ic_zip"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="24dp"
+                            style="?attr/tintIconMenu"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            tools:itemTextAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_marginStart="20dp"
+                            android:text="@{user.address.zipcode}"
+                            tools:text="ZipCode"/>
+                </LinearLayout>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="?attr/editTextAcent"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="@dimen/default_margin"
+                        android:layout_marginTop="@dimen/default_margin"
+                        android:textAllCaps="true"
+                        android:text="@string/company"/>
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/default_margin"
+                              android:layout_marginBottom="@dimen/default_margin"
+                              android:orientation="horizontal"
+                              app:layout_constraintTop_toBottomOf="@+id/idProfileDetails">
+
+                    <ImageView
+                            app:srcCompat="@drawable/ic_company"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="24dp"
+                            style="?attr/tintIconMenu"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            tools:itemTextAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_marginStart="20dp"
+                            android:text="@{user.company.name}"
+                            tools:text="Company"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/default_margin"
+                              android:layout_marginBottom="@dimen/default_margin"
+                              android:orientation="horizontal"
+                              app:layout_constraintTop_toBottomOf="@+id/idProfileDetails">
+
+                    <ImageView
+                            app:srcCompat="@drawable/ic_phrase"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="24dp"
+                            style="?attr/tintIconMenu"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            tools:itemTextAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_marginStart="20dp"
+                            android:text="@{user.company.catchPhrase}"
+                            tools:text="catchPhrase"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/default_margin"
+                              android:layout_marginBottom="@dimen/default_margin"
+                              android:orientation="horizontal"
+                              app:layout_constraintTop_toBottomOf="@+id/idProfileDetails">
+
+                    <ImageView
+                            app:srcCompat="@drawable/ic_bs"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginStart="24dp"
+                            style="?attr/tintIconMenu"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            tools:itemTextAppearance="?android:attr/textAppearanceMedium"
+                            android:layout_marginStart="20dp"
+                            android:text="@{user.company.bs}"
+                            tools:text="bs"/>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

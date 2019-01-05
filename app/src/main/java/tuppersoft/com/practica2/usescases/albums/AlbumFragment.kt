@@ -12,6 +12,7 @@ import tuppersoft.com.data.Repository
 import tuppersoft.com.data.connection.ResponseCallback
 import tuppersoft.com.domain.dto.Album
 import tuppersoft.com.practica2.R
+import tuppersoft.com.practica2.extensions.changeVisibility
 import tuppersoft.com.practica2.usescases.global.ALBUM
 import tuppersoft.com.practica2.usescases.global.GlobalListener
 import tuppersoft.com.practica2.usescases.main.MainPlaceHolderFragment
@@ -31,16 +32,16 @@ class AlbumFragment : MainPlaceHolderFragment(), GlobalListener {
     }
 
     private fun getAlbum(view: View) {
-        view.idProgressBar.visibility = View.VISIBLE
+        view.idProgressBar.changeVisibility(View.VISIBLE)
 
         Repository.getAlbums(object : ResponseCallback<MutableList<Album>> {
             override fun onResponse(response: MutableList<Album>) {
                 (view.idListRecyclerView.adapter as AlbumAdapter).addItems(response)
-                idProgressBar.visibility = View.GONE
+                idProgressBar.changeVisibility(View.GONE)
             }
 
             override fun onFailure(t: Throwable) {
-                idProgressBar.visibility = View.GONE
+                idProgressBar.changeVisibility(View.GONE)
             }
         })
 
