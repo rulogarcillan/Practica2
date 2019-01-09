@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:orientation="vertical"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
+
+
+    <androidx.cardview.widget.CardView android:layout_height="wrap_content"
+                                       android:layout_width="@dimen/dialog_width"
+                                       app:cardCornerRadius="16dp"
+                                       app:layout_constraintStart_toStartOf="parent"
+                                       app:layout_constraintEnd_toEndOf="parent"
+                                       app:layout_constraintTop_toTopOf="parent"
+                                       app:layout_constraintBottom_toBottomOf="parent">
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical">
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:orientation="vertical"
+                          android:paddingStart="@dimen/dialog_margin"
+                          android:paddingEnd="@dimen/dialog_margin">
+
+                <TextView
+                        android:id="@+id/idTitle"
+                        android:gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dialog_tittle_heigth"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        tools:text="Dummy dialog"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+
+                <TextView
+                        android:id="@+id/idBody"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dialog_buttonbar_heigth"
+                    android:layout_marginTop="@dimen/dialog_buttonbar_margintop"
+                    android:gravity="right"
+                    android:orientation="horizontal">
+
+                <Button
+                        android:id="@+id/IdNegative"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        style="@style/buttonDialog"
+                        tools:text="CLOSE"/>
+
+                <Button
+                        android:id="@+id/idPositive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        style="@style/buttonDialog"
+                        tools:text="OK"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
