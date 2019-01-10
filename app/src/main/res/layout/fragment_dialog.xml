@@ -3,6 +3,7 @@
                                                    xmlns:app="http://schemas.android.com/apk/res-auto"
                                                    xmlns:tools="http://schemas.android.com/tools"
                                                    android:orientation="vertical"
+                                                   android:background="@color/semiTransparent"
                                                    android:layout_width="match_parent"
                                                    android:layout_height="match_parent">
 
@@ -47,11 +48,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dialog_buttonbar_heigth"
                     android:layout_marginTop="@dimen/dialog_buttonbar_margintop"
+                    android:layout_marginEnd="8dp"
                     android:gravity="right"
                     android:orientation="horizontal">
 
                 <Button
-                        android:id="@+id/IdNegative"
+                        android:id="@+id/idNegative"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         style="@style/buttonDialog"

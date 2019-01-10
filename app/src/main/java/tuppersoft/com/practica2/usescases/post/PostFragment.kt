@@ -12,14 +12,25 @@ import tuppersoft.com.data.Repository
 import tuppersoft.com.data.connection.ResponseCallback
 import tuppersoft.com.domain.dto.Post
 import tuppersoft.com.practica2.R
+import tuppersoft.com.practica2.dialogs.DialogActions
 import tuppersoft.com.practica2.extensions.changeVisibility
+import tuppersoft.com.practica2.extensions.log
+import tuppersoft.com.practica2.extensions.showDialog
 import tuppersoft.com.practica2.usescases.comments.CommentsActivity
 import tuppersoft.com.practica2.usescases.global.GlobalListener
 import tuppersoft.com.practica2.usescases.global.POST
 import tuppersoft.com.practica2.usescases.main.MainPlaceHolderFragment
 
 
-class PostFragment : MainPlaceHolderFragment(), SearchView.OnQueryTextListener, GlobalListener {
+class PostFragment : MainPlaceHolderFragment(), SearchView.OnQueryTextListener, GlobalListener, DialogActions {
+
+    override fun buttonPositive(requestCode: Int) {
+        "positive2".log()
+    }
+
+    override fun buttonNegative(requestCode: Int) {
+        "negative2".log()
+    }
 
 
     var initList: MutableList<Post> = ArrayList()
@@ -31,7 +42,15 @@ class PostFragment : MainPlaceHolderFragment(), SearchView.OnQueryTextListener, 
         initRecyclerView(rootView)
         getPost(rootView)
         toScroll(rootView)
+
+        rootView.idFbAdd.setOnClickListener { showDialog() }
+
         return rootView
+    }
+
+    private fun showDialog() {
+        // this@PostFragment.childFragmentManager.showPositiveDialog()
+        this@PostFragment.childFragmentManager.showDialog()
     }
 
     private fun initRecyclerView(rootView: View) {

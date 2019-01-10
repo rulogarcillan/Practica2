@@ -4,7 +4,6 @@ import android.view.View
 import kotlinx.android.synthetic.main.nav_check_main.view.*
 import tuppersoft.com.practica2.R
 
-
 class ItemCheckHolder(private var rootView: View) : ItemModelHolder(rootView) {
     fun bind(item: ItemCheck, listener: ActionsMenu) {
         rootView.idMenuItem.text = item.title

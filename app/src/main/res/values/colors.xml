@@ -20,4 +20,6 @@
 
     <color name="semiTransparent">#2d000000</color>
 
+    <color name="trans">#2d000000</color>
+
 </resources>

@@ -9,6 +9,7 @@ import tuppersoft.com.practica2.usescases.post.PostFragment
 import tuppersoft.com.practica2.usescases.users.UsersFragment
 
 open class MainPlaceHolderFragment : Fragment() {
+
     companion object {
         private const val ARG_SECTION = "section"
 
