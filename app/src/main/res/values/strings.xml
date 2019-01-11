@@ -40,7 +40,7 @@
     <string name="accept">accept</string>
     <string name="cancel">cancel</string>
     <string name="retry">retry</string>
-
+    <string name="title_activity_maps">Map</string>
 
 </resources>
 
