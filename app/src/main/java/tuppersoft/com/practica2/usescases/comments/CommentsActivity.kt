@@ -8,11 +8,14 @@ import kotlinx.android.synthetic.main.activity_comments.*
 import kotlinx.android.synthetic.main.appbar.*
 import tuppersoft.com.data.Repository
 import tuppersoft.com.data.connection.ResponseCallback
+import tuppersoft.com.domain.dbo.DialogData
 import tuppersoft.com.domain.dto.Comment
 import tuppersoft.com.domain.dto.Post
 import tuppersoft.com.practica2.R
 import tuppersoft.com.practica2.databinding.ActivityCommentsBinding
 import tuppersoft.com.practica2.extensions.changeVisibility
+import tuppersoft.com.practica2.extensions.showDialog
+import tuppersoft.com.practica2.usescases.global.ERR_CONECTION
 import tuppersoft.com.practica2.usescases.global.GlobalActivity
 import tuppersoft.com.practica2.usescases.global.POST
 
@@ -53,6 +56,15 @@ class CommentsActivity : GlobalActivity() {
 
             override fun onFailure(t: Throwable) {
                 idProgressBar.changeVisibility(View.GONE)
+                this@CommentsActivity.supportFragmentManager.showDialog(
+                    DialogData(
+                        getString(R.string.failed),
+                        getString(R.string.error_conection),
+                        getString(R.string.cancel),
+                        getString(R.string.retry),
+                        ERR_CONECTION
+                    )
+                )
             }
 
         })
@@ -60,5 +72,13 @@ class CommentsActivity : GlobalActivity() {
 
     private fun getBundle() {
         binding.post = intent.getParcelableExtra(POST) as Post
+    }
+
+
+    override fun buttonPositive(requestCode: Int) {
+        when (requestCode) {
+            ERR_CONECTION -> getComments()
+            else -> super.buttonPositive(requestCode)
+        }
     }
 }

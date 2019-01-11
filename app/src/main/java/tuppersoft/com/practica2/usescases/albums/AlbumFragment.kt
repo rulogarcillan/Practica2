@@ -6,45 +6,58 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.fragment_list.view.*
 import tuppersoft.com.data.Repository
 import tuppersoft.com.data.connection.ResponseCallback
+import tuppersoft.com.domain.dbo.DialogData
 import tuppersoft.com.domain.dto.Album
 import tuppersoft.com.practica2.R
+import tuppersoft.com.practica2.dialogs.DialogActions
 import tuppersoft.com.practica2.extensions.changeVisibility
+import tuppersoft.com.practica2.extensions.showDialog
 import tuppersoft.com.practica2.usescases.global.ALBUM
+import tuppersoft.com.practica2.usescases.global.ERR_CONECTION
+import tuppersoft.com.practica2.usescases.global.GlobalActivity
 import tuppersoft.com.practica2.usescases.global.GlobalListener
 import tuppersoft.com.practica2.usescases.main.MainPlaceHolderFragment
 import tuppersoft.com.practica2.usescases.photos.PhotosActivity
 
 
-class AlbumFragment : MainPlaceHolderFragment(), GlobalListener {
+class AlbumFragment : MainPlaceHolderFragment(), GlobalListener, DialogActions {
 
+    lateinit var rootView: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.fragment_list, container, false)
+        rootView = inflater.inflate(R.layout.fragment_list, container, false)
         // setHasOptionsMenu(true)
         rootView.idListRecyclerView.layoutManager = LinearLayoutManager(activity)
         rootView.idListRecyclerView.adapter = AlbumAdapter(null, this)
-        getAlbum(rootView)
+        getAlbum()
         return rootView
     }
 
-    private fun getAlbum(view: View) {
-        view.idProgressBar.changeVisibility(View.VISIBLE)
+    private fun getAlbum() {
+        rootView.idProgressBar.changeVisibility(View.VISIBLE)
 
         Repository.getAlbums(object : ResponseCallback<MutableList<Album>> {
             override fun onResponse(response: MutableList<Album>) {
-                (view.idListRecyclerView.adapter as AlbumAdapter).addItems(response)
-                idProgressBar.changeVisibility(View.GONE)
+                (rootView.idListRecyclerView.adapter as AlbumAdapter).addItems(response)
+                rootView.idProgressBar.changeVisibility(View.GONE)
             }
 
             override fun onFailure(t: Throwable) {
-                idProgressBar.changeVisibility(View.GONE)
+                rootView.idProgressBar.changeVisibility(View.GONE)
+                this@AlbumFragment.childFragmentManager.showDialog(
+                    DialogData(
+                        getString(R.string.failed),
+                        getString(R.string.error_conection),
+                        getString(R.string.cancel),
+                        getString(R.string.retry),
+                        ERR_CONECTION
+                    )
+                )
             }
         })
-
     }
 
     override fun <T> onClick(item: T) {
@@ -55,6 +68,17 @@ class AlbumFragment : MainPlaceHolderFragment(), GlobalListener {
         val intent = Intent(activity, PhotosActivity::class.java)
         intent.putExtra(ALBUM, item)
         startActivity(intent)
+    }
+
+    override fun buttonPositive(requestCode: Int) {
+        when (requestCode) {
+            ERR_CONECTION -> getAlbum()
+            else -> (requireActivity() as GlobalActivity).buttonPositive(requestCode)
+        }
+    }
+
+    override fun buttonNegative(requestCode: Int) {
+        (requireActivity() as GlobalActivity).buttonPositive(requestCode)
     }
 }
 

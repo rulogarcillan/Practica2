@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+
             android:name=".App"
             android:allowBackup="false"
             android:icon="@mipmap/ic_launcher"
@@ -14,7 +15,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".usescases.splash.SplashActivity">
+        <activity android:name=".usescases.splash.SplashActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -24,10 +25,11 @@
         <activity
                 android:name=".usescases.main.MainActivity"
                 android:hardwareAccelerated="true"
-                android:theme="@style/AppTheme"/>
-        <activity android:name=".usescases.comments.CommentsActivity"/>
-        <activity android:name=".usescases.photos.PhotosActivity"/>
-        <activity android:name=".usescases.users.UserDetailsActivity"/>
+                android:theme="@style/AppTheme"
+                android:screenOrientation="portrait"/>
+        <activity android:name=".usescases.comments.CommentsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".usescases.photos.PhotosActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".usescases.users.UserDetailsActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

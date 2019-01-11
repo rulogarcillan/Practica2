@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import tuppersoft.com.data.Repository
 import tuppersoft.com.practica2.R
 import tuppersoft.com.practica2.dialogs.DialogActions
-import tuppersoft.com.practica2.extensions.log
 
 abstract class GlobalActivity : AppCompatActivity(), DialogActions {
 
@@ -14,12 +13,13 @@ abstract class GlobalActivity : AppCompatActivity(), DialogActions {
         super.onCreate(savedInstanceState)
     }
 
+
+    //only for actions globals or notifications
+    //
     override fun buttonPositive(requestCode: Int) {
-        "positive".log()
     }
 
     override fun buttonNegative(requestCode: Int) {
-        "negative".log()
     }
 }
 

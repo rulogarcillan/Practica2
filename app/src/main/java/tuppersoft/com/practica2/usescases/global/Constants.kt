@@ -12,4 +12,8 @@ const val POST = "post"
 const val ALBUM = "album"
 const val USER = "user"
 
-const val MY_PERMISSIONS_REQUEST_CALL_PHONE = 200
+const val ERR_CONECTION = -50
+const val NEW_POST = -60
+const val ERR_CONECTION_POST = -61
+const val NEW_POST_OK = -62
+

@@ -21,8 +21,8 @@
     <string name="dark_theme">Dark Theme</string>
     <string name="search">Search</string>
     <string name="id_post">#%1$s</string>
-    <string name="written_by">Written by %1$s with id %2$s</string>
-    <string name="hintSearchPeople">Search by people id</string>
+    <string name="written_by">Written by user id %1$s</string>
+    <string name="hintSearchPeople">Search by user id</string>
     <string name="comments">Comments</string>
     <string name="photos">Photos</string>
     <string name="user_detail">User detail</string>
@@ -31,6 +31,15 @@
     <string name="profile_details">profile details</string>
     <string name="address">address</string>
     <string name="company">company</string>
+    <string name="failed">Failed</string>
+    <string name="great">Great</string>
+    <string name="info">Info</string>
+    <string name="error_conection">Connection error, please, check your network</string>
+    <string name="new_post">It will proceed to simulate the creation of a new post. Do you want to continue?</string>
+    <string name="post_created_ok">New post has been created</string>
+    <string name="accept">accept</string>
+    <string name="cancel">cancel</string>
+    <string name="retry">retry</string>
 
 
 </resources>

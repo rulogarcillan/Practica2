@@ -6,6 +6,7 @@ import android.widget.ImageView
 import androidx.fragment.app.FragmentManager
 import tuppersoft.com.domain.dbo.DialogData
 import tuppersoft.com.practica2.BuildConfig
+import tuppersoft.com.practica2.R
 import tuppersoft.com.practica2.dialogs.DialogAlert
 import tuppersoft.com.practica2.usescases.global.TAG
 import tuppersoft.com.practica2.utils.GlideApp
@@ -19,9 +20,9 @@ fun String?.log(tag: String = TAG) {
 
 fun ImageView.loadFromUrl(url: String?, width: Int? = null, height: Int? = null) {
     if (width != null && height != null) {
-        GlideApp.with(context).load(url).override(width, height).into(this)
+        GlideApp.with(context).load(url).placeholder(R.drawable.placeholder).override(width, height).into(this)
     } else {
-        GlideApp.with(context).load(url).into(this)
+        GlideApp.with(context).load(url).placeholder(R.drawable.placeholder).into(this)
     }
 }
 
@@ -30,10 +31,10 @@ fun View.changeVisibility(type: Int) {
 }
 
 //dialogData: DialogData
-fun FragmentManager.showDialog() {
+fun FragmentManager.showDialog(dialogData: DialogData) {
     val dialog =
         DialogAlert.newInstance(
-            DialogData("Prueba", "Esto es una prueba de dialogo", "cancelar", "aceptar")
+            dialogData
         )
     dialog.show(this, "")
 }

@@ -56,6 +56,19 @@ class Repository {
             })
         }
 
+        fun <T> savePost(post: Post, callback: ResponseCallback<T>) {
+            Client().getRetrofitCLient().create(Services::class.java).savePost(post).enqueue(object : Callback,
+                retrofit2.Callback<Post> {
+                override fun onFailure(call: Call<Post>, t: Throwable) {
+                    callback.onFailure(t)
+                }
+
+                override fun onResponse(call: Call<Post>, response: Response<Post>) {
+                    callback.onResponse(response.body() as T)
+                }
+            })
+        }
+
         fun <T> getUser(userId: Long, callback: ResponseCallback<T>) {
             Client().getRetrofitCLient().create(Services::class.java).getUser(userId).enqueue((object : Callback,
                 retrofit2.Callback<MutableList<User>> {

@@ -6,12 +6,16 @@ import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.activity_list.*
 import kotlinx.android.synthetic.main.appbar.*
 import tuppersoft.com.data.Repository
+import tuppersoft.com.data.Repository.Companion.getPost
 import tuppersoft.com.data.connection.ResponseCallback
+import tuppersoft.com.domain.dbo.DialogData
 import tuppersoft.com.domain.dto.Album
 import tuppersoft.com.domain.dto.Photo
 import tuppersoft.com.practica2.R
 import tuppersoft.com.practica2.extensions.changeVisibility
+import tuppersoft.com.practica2.extensions.showDialog
 import tuppersoft.com.practica2.usescases.global.ALBUM
+import tuppersoft.com.practica2.usescases.global.ERR_CONECTION
 import tuppersoft.com.practica2.usescases.global.GlobalActivity
 
 
@@ -50,12 +54,27 @@ class PhotosActivity : GlobalActivity() {
 
             override fun onFailure(t: Throwable) {
                 idProgressBar.changeVisibility(View.GONE)
+                this@PhotosActivity.supportFragmentManager.showDialog(
+                    DialogData(
+                        getString(R.string.failed),
+                        getString(R.string.error_conection),
+                        getString(R.string.cancel),
+                        getString(R.string.retry),
+                        ERR_CONECTION
+                    )
+                )
             }
-
         })
     }
 
     private fun getBundle() {
         album = intent.getParcelableExtra(ALBUM) as Album
+    }
+
+    override fun buttonPositive(requestCode: Int) {
+        when (requestCode) {
+            ERR_CONECTION -> getPhotos()
+            else -> super.buttonPositive(requestCode)
+        }
     }
 }

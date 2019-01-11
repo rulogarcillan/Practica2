@@ -43,24 +43,27 @@ class DialogAlert : AppCompatDialogFragment() {
         val view = inflater.inflate(R.layout.fragment_dialog, container, false)
 
         if (arguments?.getParcelable<DialogData>(DIALOG_ARGS) != null) {
-            var dialogData = arguments?.getParcelable<DialogData>(DIALOG_ARGS) as DialogData
+            val dialogData = arguments?.getParcelable(DIALOG_ARGS) as DialogData
             view.idTitle.text = dialogData.tittle
             view.idBody.text = dialogData.body
-            view.idNegative.text = dialogData.negativeButton
             view.idPositive.text = dialogData.positiveButton
 
-        }
-        //  completeDialogInformation(view)
-        //  val requestCode = arguments?.getParcelable<DialogDbo>(DIALOG_ARGS)?.requestCode ?: -1
+            if (dialogData.negativeButton == null) {
+                view.idNegative.visibility = View.GONE
+            } else {
+                view.idNegative.text = dialogData.negativeButton
+                view.idNegative.setOnClickListener {
+                    dismiss()
+                    listener.buttonNegative(dialogData.requestCode)
+                }
+            }
 
-        view.idPositive.setOnClickListener {
-            dismiss()
-            listener.buttonPositive()
-        }
+            view.idPositive.setOnClickListener {
+                dismiss()
+                listener.buttonPositive(dialogData.requestCode)
+            }
 
-        view.idNegative.setOnClickListener {
-            dismiss()
-            listener.buttonNegative()
+
         }
         return view
     }
